@@ -23,6 +23,8 @@ public class MyAlert {
                 dialog.dismiss();
             }
         });
+        builder.show();
+
     }
 
 }   //Main Class

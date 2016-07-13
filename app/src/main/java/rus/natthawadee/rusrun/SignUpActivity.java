@@ -7,6 +7,16 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
+import com.squareup.okhttp.Call;
+import com.squareup.okhttp.Callback;
+import com.squareup.okhttp.FormEncodingBuilder;
+import com.squareup.okhttp.OkHttpClient;
+import com.squareup.okhttp.Request;
+import com.squareup.okhttp.RequestBody;
+import com.squareup.okhttp.Response;
+
+import java.io.IOException;
+
 public class SignUpActivity extends AppCompatActivity {
 
     //Explicit
@@ -15,6 +25,7 @@ public class SignUpActivity extends AppCompatActivity {
     private RadioButton avataoRadi0Button,avata1RadioButton,avata2RadioButton,
             avata3RadioButton,avata4RadioButton;
     private String nameString,userString,passwordString,avtaString;
+    private static final String urlPHP = "http://swiftcodingthai.com/rus/add_user_master.php";
 
 
 
@@ -83,8 +94,9 @@ public class SignUpActivity extends AppCompatActivity {
             MyAlert myAlert = new MyAlert();
             myAlert.myDialog(this, "มีช่องว่าง", "กรุณากรอกทุกช่อง คะ");
 
-
         } else if (checkChoose()) {
+            //cheched
+            updateNewUserToServer();
 
         } else {
             // Un Check
@@ -98,6 +110,34 @@ public class SignUpActivity extends AppCompatActivity {
 
 
     } //clickSignUp
+
+    private void updateNewUserToServer() {
+
+        OkHttpClient okHttpClient = new OkHttpClient();
+        RequestBody requestBody = new FormEncodingBuilder()
+                .add("isAdd", "true")
+                .add("Name", nameString)
+                .add("User", userString)
+                .add("Password", passwordString)
+                .add("Avata", avtaString)
+                .build();
+        Request.Builder builder = new Request.Builder();
+        Request request = builder.url(urlPHP).post(requestBody).build();
+        Call call = okHttpClient.newCall(request);
+        call.enqueue(new Callback() {
+            @Override
+            public void onFailure(Request request, IOException e) {
+
+            }
+
+
+            @Override
+            public void onResponse(Response response) throws IOException {
+
+                finish();
+            }
+        });
+    }
 
     private boolean checkChoose() {
 

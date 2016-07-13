@@ -32,6 +32,12 @@ public class MainActivity extends AppCompatActivity {
 
     }// Main Method
 
+    public void clickSingIn(View view) {
+
+    }//clickSign
+
+
+
     public void clickSingUpMain(View view) {
         startActivity(new Intent(MainActivity.this,SignUpActivity.class));
     }

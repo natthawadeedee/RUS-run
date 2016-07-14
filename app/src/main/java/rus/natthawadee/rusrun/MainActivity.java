@@ -104,6 +104,7 @@ public class MainActivity extends AppCompatActivity {
                     }
 
                 }// for
+
                 if (statusABoolean) {
 
                     MyAlert myAlert = new MyAlert();
@@ -112,7 +113,11 @@ public class MainActivity extends AppCompatActivity {
                 } else if (myPasswordString.equals(truePassword)) {
                     //password
                     Toast.makeText(context, "Welcome" + myNameString, Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(MainActivity.this,MapsActivity.class);
+                    startActivity(intent);
+
                 } else {
+
                     //password False
                     MyAlert myAlert = new MyAlert();
                     myAlert.myDialog(context,"Password False",

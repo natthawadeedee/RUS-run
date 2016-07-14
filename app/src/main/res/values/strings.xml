@@ -2,5 +2,6 @@
     <string name="app_name">RUS run</string>
 
     <string name="signup">Sing Up</string>
+    <string name="title_activity_maps">Map</string>
 
 </resources>

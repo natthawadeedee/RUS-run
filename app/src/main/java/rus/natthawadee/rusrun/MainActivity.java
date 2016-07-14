@@ -51,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
         private Context context;
         private boolean statusABoolean = true;
         private String truePassword;
+        private String myNameString, myIDString,myAvataSting;
 
         public SynUser(String myJSONString,
                        String myUserString,
@@ -96,6 +97,9 @@ public class MainActivity extends AppCompatActivity {
 
                         statusABoolean = false;
                         truePassword = jsonObject.getString("Password");
+                        myNameString = jsonObject.getString("Name");
+                        myIDString = jsonObject.getString("id");
+                        myAvataSting = jsonObject.getString("Avata");
 
                     }
 
@@ -107,7 +111,7 @@ public class MainActivity extends AppCompatActivity {
                             "ไม่มี" + myUserString + "ในฐานข้อมูลของเรา");
                 } else if (myPasswordString.equals(truePassword)) {
                     //password
-                    Toast.makeText(context, "Welcome", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, "Welcome" + myNameString, Toast.LENGTH_SHORT).show();
                 } else {
                     //password False
                     MyAlert myAlert = new MyAlert();
